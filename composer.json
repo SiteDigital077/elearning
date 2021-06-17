@@ -1,0 +1,14 @@
+{
+    "name": "digitalsitesaas/elearning",
+    "description": "Módulo E-Learning",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SiteDigital",
+            "email": "admin@sitedigital.com.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
