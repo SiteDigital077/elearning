@@ -12,6 +12,7 @@ use DigitalsiteSaaS\Elearning\Version;
 use DigitalsiteSaaS\Elearning\Contenido_general;
 use DigitalsiteSaaS\Elearning\Instructor;
 use DigitalsiteSaaS\Elearning\Competencia;
+use DigitalsiteSaaS\Elearning\Programa;
 use Input;
 
 use Hyn\Tenancy\Models\Hostname;
@@ -49,6 +50,17 @@ class ElearningController extends Controller{
   $data = json_encode($competencias, true);
   $vowels = array('"', '[', ']');
   $onlyconsonants = str_replace($vowels, '', $data);
+
+  $programas = Input::get('programa');
+  $datapro = json_encode($programas, true);
+  $vowelspro = array('"', '[', ']');
+  $onlyconsonantspro = str_replace($vowelspro, '', $datapro);
+
+  $instructores = Input::get('instructor');
+  $datains = json_encode($instructores, true);
+  $vowelsins = array('"', '[', ']');
+  $onlyconsonantsins = str_replace($vowelsins, '', $datains);
+
   if(!$this->tenantName){
    $crearcurso = new Cursos;
   }else{
@@ -66,8 +78,13 @@ class ElearningController extends Controller{
    $crearcurso->horario = Input::get('horario');
    $crearcurso->duracion = Input::get('duracion');
    $crearcurso->telefono = Input::get('telefono');
+   $crearcurso->certificado = Input::get('certificado');
+   $crearcurso->idioma = Input::get('idioma');
    $crearcurso->correo = Input::get('correo');
+   $crearcurso->alcance = Input::get('alcance');
    $crearcurso->competencia = $onlyconsonants;
+   $crearcurso->programa = $onlyconsonantspro;
+   $crearcurso->instructor = $onlyconsonantsins;
    $crearcurso->imagen = Input::get('imagen');
    $crearcurso->fecha = Input::get('fecha');
    $crearcurso->save();
@@ -79,25 +96,65 @@ class ElearningController extends Controller{
    if(!$this->tenantName){
    $cursos = Cursos::where('id', '=', $id)->get();
    $competencias = Competencia::all();
+   $instructores = Instructor::all();
+   $programas = Programa::all();
+
    foreach($cursos as $curso){
    $ideman = $curso->competencia;
    $id_str = explode(',', $ideman);
    $registro = Competencia::whereIn('id', $id_str)->get();
+
+   $idemen = $curso->instructor;
+   $id_ste = explode(',', $idemen);
+   $registroe = Instructor::whereIn('id', $id_ste)->get();
+   
+   $idemenpro = $curso->programa;
+   $id_stepro = explode(',', $idemenpro);
+   $registroepro = Programa::whereIn('id', $id_stepro)->get();
+
    }
 
    }else{
    $cursos = \DigitalsiteSaaS\Elearning\Tenant\Cursos::where('id', '=', $id)->get();
    $competencias = \DigitalsiteSaaS\Elearning\Tenant\Competencia::all();
+   $instructores = \DigitalsiteSaaS\Elearning\Tenant\Instructor::all();
+   $programas = \DigitalsiteSaaS\Elearning\Tenant\Programa::all();
    foreach($cursos as $curso){
+
    $ideman = $curso->competencia;
    $id_str = explode(',', $ideman);
    $registro = \DigitalsiteSaaS\Elearning\Tenant\Competencia::whereIn('id', $id_str)->get();
+
+   $idemen = $curso->instructor;
+   $id_ste = explode(',', $idemen);
+   $registroe = \DigitalsiteSaaS\Elearning\Tenant\Instructor::whereIn('id', $id_ste)->get();
+
+   $idemenpro = $curso->programa;
+   $id_stepro = explode(',', $idemenpro);
+   $registroepro = \DigitalsiteSaaS\Elearning\Tenant\Programa::whereIn('id', $id_stepro)->get();
+
    }
    }
-   return view('elearning::editar-curso')->with('cursos', $cursos)->with('competencias', $competencias)->with('registro', $registro);
+   return view('elearning::editar-curso')->with('cursos', $cursos)->with('competencias', $competencias)->with('registro', $registro)->with('registroe', $registroe)->with('instructores', $instructores)->with('programas', $programas)->with('registroepro', $registroepro);
   }
 
   public function update($id){
+
+  $competencias = Input::get('competencia');
+  $data = json_encode($competencias, true);
+  $vowels = array('"', '[', ']');
+  $onlyconsonants = str_replace($vowels, '', $data);
+
+  $programas = Input::get('programa');
+  $datapro = json_encode($programas, true);
+  $vowelspro = array('"', '[', ']');
+  $onlyconsonantspro = str_replace($vowelspro, '', $datapro);
+
+  $instructores = Input::get('instructor');
+  $datains = json_encode($instructores, true);
+  $vowelsins = array('"', '[', ']');
+  $onlyconsonantsins = str_replace($vowelsins, '', $datains);
+
   $input = Input::all();
   if(!$this->tenantName){
   $updatecursos = Cursos::find($id);
@@ -108,8 +165,23 @@ class ElearningController extends Controller{
   $updatecursos->descripcion = Input::get('descripcion');
   $updatecursos->estado = Input::get('estado');
   $updatecursos->lecciones = Input::get('lecciones');
-  $updatecursos->tiempo = Input::get('tiempo');
   $updatecursos->producto = Input::get('producto');
+  $updatecursos->vista = Input::get('vista');
+  $updatecursos->modalidad = Input::get('modalidad');
+  $updatecursos->lugar = Input::get('lugar');
+  $updatecursos->inversion = Input::get('inversion');
+  $updatecursos->horario = Input::get('horario');
+  $updatecursos->duracion = Input::get('duracion');
+  $updatecursos->telefono = Input::get('telefono');
+  $updatecursos->certificado = Input::get('certificado');
+  $updatecursos->idioma = Input::get('idioma');
+  $updatecursos->correo = Input::get('correo');
+  $updatecursos->alcance = Input::get('alcance');
+  $updatecursos->competencia = $onlyconsonants;
+  $updatecursos->programa = $onlyconsonantspro;
+  $updatecursos->instructor = $onlyconsonantsins;
+  $updatecursos->imagen = Input::get('imagen');
+  $updatecursos->fecha = Input::get('fecha');
   $updatecursos->save();
   return Redirect('gestion/elearning')->with('status', 'ok_update');
 }
@@ -127,10 +199,14 @@ public function delete($id) {
  public function crearcursos() {
   if(!$this->tenantName){
    $competencias = Competencia::all();
+   $programas = Programa::all();
+   $instructores = Instructor::all();
   }else{
    $competencias = \DigitalsiteSaaS\Elearning\Tenant\Competencia::all();
+   $programas = \DigitalsiteSaaS\Elearning\Tenant\Programa::all();
+   $instructores = \DigitalsiteSaaS\Elearning\Tenant\Instructor::all();
   }
-  return view('elearning::crear-curso')->with('competencias', $competencias);
+  return view('elearning::crear-curso')->with('competencias', $competencias)->with('instructores', $instructores)->with('programas', $programas);
  }
 
  public function lecciones() {
@@ -230,6 +306,28 @@ public function contenidogeneral(){
    $crearcompetencia->descripcion = Input::get('descripcion');
    $crearcompetencia->save();
    return Redirect('/gestion/elearning/competencias')->with('status', 'ok_create');
+  }
+
+
+  public function programas() {
+  if(!$this->tenantName){
+  $programas = Programa::all();
+  }else{
+  $programas = \DigitalsiteSaaS\Elearning\Tenant\Programa::all();
+  }
+  return view('elearning::programas')->with('programas', $programas);
+  }
+
+  public function crearprograma(){
+  if(!$this->tenantName){
+   $crearprograma = new Programa;
+  }else{
+   $crearprograma = new \DigitalsiteSaaS\Elearning\Tenant\Programa;
+  }
+   $crearprograma->programa = Input::get('programa');
+   $crearprograma->descripcion = Input::get('descripcion');
+   $crearprograma->save();
+   return Redirect('/gestion/elearning/programas')->with('status', 'ok_create');
   }
 
 

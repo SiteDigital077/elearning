@@ -3,7 +3,7 @@
 @section('ContenidoSite-01')
 <link href="/chosen/component-chosen.min.css" rel="stylesheet">
 <!-- Header Layout Content -->
-        <div class="mdk-header-layout__content page">
+
 
 <div class="page__header flush-shadow">
                 <div class="container-fluid page__heading-container">
@@ -77,16 +77,13 @@
  </div>
 
 
-
-
+<div class="container">
+    
 <div class="container-fluid page__container">
                 <div class="card card-form">
-                    <div class="row no-gutters">
-                        <div class="col-lg-4 card-body">
-                            <p><strong class="headings-color">Crear Cursos</strong></p>
-                            <p class="text-muted">Stack supports all of Bootstrap's default form styling in addition to a handful of new input types and features. Please <a href="https://getbootstrap.com/docs/4.1/components/forms/" target="_blank">read the official documentation</a> for a full list of options from Bootstrap's core library.</p>
-                        </div>
-                        <div class="col-lg-8 card-form__body card-body">
+                    <div class="">
+                        
+                        <div class="col-lg-12 card-form__body card-body">
                            {{ Form::open(array('method' => 'POST','class' => 'form-horizontal','id' => 'defaultForm1', 'url' => array('gestion/elearning/crearcurso'))) }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nombre Curso:</label>
@@ -109,11 +106,15 @@
                                                  ], null, array('class' => 'form-control')) }}
                                 </div>
 
+
+                        
+
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Modalidad:</label>
                                     {{ Form::select('modalidad', [
                                                  '1' => 'Vitual',
-                                                 '2' => 'Presencial'
+                                                 '2' => 'Presencial',
+                                                 '3' => 'Semipresencial'
                                                  ], null, array('class' => 'form-control')) }}
                                 </div>
                                 <div class="form-group">
@@ -122,8 +123,24 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Inversión Curso:</label>
+                                    <label for="exampleInputEmail1">Valor del Curso:</label>
                                      {{Form::text('inversion', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','maxlength' => '150', 'min' => '0'))}}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Genera Certificado:</label>
+                                    {{ Form::select('certificado', [
+                                                 '1' => 'Si',
+                                                 '2' => 'No'
+                                                 ], null, array('class' => 'form-control')) }}
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Idioma:</label>
+                                    {{ Form::select('idioma', [
+                                                 '1' => 'Inglés',
+                                                 '2' => 'Español'
+                                                 ], null, array('class' => 'form-control')) }}
                                 </div>
 
                                 <div class="form-group">
@@ -132,19 +149,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Duración Curso:</label>
+                                    <label for="exampleInputEmail1">Intensidad Horaria:</label>
                                      {{Form::text('duracion', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','maxlength' => '150', 'min' => '0'))}}
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Producto:</label>
-                                     {{Form::text('producto', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','maxlength' => '150', 'min' => '0'))}}
-                                </div>
-
-                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Teléfono:</label>
-                                     {{Form::text('telefono', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','maxlength' => '150', 'min' => '0'))}}
-                                </div>
+                                
 
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Email:</label>
@@ -162,7 +171,7 @@
                                         </div>
 
                                  <div class="form-group">
-                                 <label for="exampleInputEmail1">COMPETENCIAS</label>
+                                 <label for="exampleInputEmail1">Habilidades que desarrolla</label>
                                  
                                    <div id="output"></div>
                                     <select id="optgroup" class="form-control form-control-chosen" name="competencia[]" data-placeholder="Seleccione Competencia" multiple>
@@ -170,8 +179,32 @@
                                      <option value="{{$competenciass->id}}">{{$competenciass->competencia}}</option>
                                     @endforeach
                                     </select>
+                                  </div>
+
+                                  <div class="form-group">
+                                 <label for="exampleInputEmail1">Programas</label>
+                                 
+                                   <div id="output"></div>
+                                    <select id="optgroup" class="form-control form-control-chosen" name="programa[]" data-placeholder="Seleccione Competencia" multiple>
+                                    @foreach($programas as $programass)
+                                     <option value="{{$programass->id}}">{{$programass->programa}}</option>
+                                    @endforeach
+                                    </select>
                                    
                                   </div>
+
+                                  <div class="form-group">
+                                 <label for="exampleInputEmail1">INSTRUCTORES</label>
+                                 
+                                   <div id="output"></div>
+                                    <select id="optgroup" class="form-control form-control-chosen" name="instructor[]" data-placeholder="Seleccione Instructor" multiple>
+                                    @foreach($instructores as $instructores)
+                                     <option value="{{$instructores->id}}">{{$instructores->nombres}} {{$instructores->apellidos}}</option>
+                                    @endforeach
+                                    </select>
+                                   
+                                  </div>  
+
 
 
                                 <div class="form-group">
@@ -180,11 +213,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Fecha Curso:</label>
-                                     {{Form::text('fecha', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','maxlength' => '150', 'min' => '0'))}}
+                                     {{Form::text('fecha', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','data-toggle'=>'flatpickr','data-flatpickr-mode'=>'range','data-flatpickr-date-format'=>'y-m-d'))}}
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Descripción Curso:</label>
-                                    {{Form::textarea('descripcion', '', array('class' => 'form-control','placeholder'=>'Ingrese descripción', 'maxlength' => '159'))}}
+                                    {{Form::textarea('descripcion', '', array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Alcance del Curso:</label>
+                                    {{Form::textarea('alcance', '', array('class' => 'form-control','placeholder'=>'Ingrese alcance'))}}
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -192,6 +230,7 @@
                         </div>
                     </div>
                 </div>
+</div>
 </div>
 
 <footer>

@@ -3,15 +3,12 @@
 namespace DigitalsiteSaaS\Elearning\Tenant;
 
 use Hyn\Tenancy\Traits\UsesTenantConnection;
-
 use Illuminate\Database\Eloquent\Model;
 
-class Contenido_general extends Model
+class Programa extends Model
 {
-
 	use UsesTenantConnection;
 
-	protected $table = 'elearning_general';
+	protected $table = 'elearning_programas';
 	public $timestamps = true;
 }
-

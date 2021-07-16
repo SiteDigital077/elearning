@@ -49,13 +49,13 @@
 
                                 <div class="d-flex flex-column flex-sm-row">
                                     <a href="#" class="avatar mb-3 w-xs-plus-down-100 mr-sm-3">
-                                        <img src="http://portal.local/lms/dist/assets/images/logos/vuejs.svg" alt="Card image cap" class="avatar-course-img">
+                                        <img src="{{$cursos->imagen}}" alt="Card image cap" class="avatar-course-img">
                                     </a>
                                     <div class="flex" style="min-width: 200px;">
 
                                         <div class="d-flex">
                                             <div>
-                                                <h4 class="card-title mb-1"><a href="fluid-instructor-course-edit.html">{{$cursos->nombre}}</a></h4>
+                                                <h4 class="card-title mb-1"><a href="#">{{$cursos->nombre}}</a></h4>
                                                 <p class="text-muted">{{$cursos->descripcion}}</p>
                                             </div>
                                             <div class="dropdown ml-auto">

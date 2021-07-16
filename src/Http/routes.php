@@ -28,4 +28,7 @@ Route::post('/gestion/elearning/crearinstructor', 'DigitalsiteSaaS\Elearning\Htt
                                                                                                           
 Route::get('/gestion/elearning/competencias', 'DigitalsiteSaaS\Elearning\Http\ElearningController@competencias');
 Route::post('/gestion/elearning/crearcompetencia', 'DigitalsiteSaaS\Elearning\Http\ElearningController@crearcompetencia');
+
+Route::get('/gestion/elearning/programas', 'DigitalsiteSaaS\Elearning\Http\ElearningController@programas');
+Route::post('/gestion/elearning/crearprograma', 'DigitalsiteSaaS\Elearning\Http\ElearningController@crearprograma');
 });
