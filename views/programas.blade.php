@@ -37,7 +37,7 @@
         <div class="page__header flush-shadow">
                 <div class="container-fluid page__heading-container">
                     <div class="page__heading d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-lg-between text-center text-lg-left">
-                        <h1 class="m-lg-0">Competencias </h1>
+                        <h1 class="m-lg-0">Programas </h1>
                         <button type="button" class="btn btn-success ml-lg-3" data-toggle="modal" data-target="#exampleModal">Crear Programa <i class="material-icons">add</i></button>
                     </div>
                 </div>
@@ -59,6 +59,9 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="/gestion/elearning/competencias" class="nav-link">Competencias</a> 
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="/gestion/elearning/programas" class="nav-link">Programas</a> 
                             </li>
                         </ul>
                     </div>
@@ -117,7 +120,7 @@
 
  <div class="block full">
   <div class="block-title">
-   <h4>Instructores Registrados</h4>
+   <h4>Programas Registrados</h4>
   </div>
             
   <div class="table-responsive">
@@ -125,9 +128,9 @@
     <thead>
      <tr>
       <th class="text-center">ID</th>
-      <th class="text-center">Nombre</th>
-      <th class="text-center">Apellido</th>
-      <th class="text-center">Profesión</th>
+      <th class="text-center">Programa</th>
+      <th class="text-center">Creación</th>
+      <th class="text-center">Actualización</th>
       
       <th class="text-center">Acciones</th>
       
@@ -139,7 +142,7 @@
      @foreach($programas as $programas)
      <tr>
       <td class="text-center">{{$programas->id}}</td>
-      <td class="text-center">{{$programas->competencia}}</td>
+      <td class="text-center">{{$programas->programa}}</td>
       <td>{{$programas->created_at}}</td>
       <td>{{$programas->updated_at}}</td>
       

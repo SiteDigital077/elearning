@@ -37,7 +37,7 @@
         <div class="page__header flush-shadow">
                 <div class="container-fluid page__heading-container">
                     <div class="page__heading d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-lg-between text-center text-lg-left">
-                        <h1 class="m-lg-0">Cursos </h1>
+                        <h1 class="m-lg-0">Instructores </h1>
                         <button type="button" class="btn btn-success ml-lg-3" data-toggle="modal" data-target="#exampleModal">Crear Instructor <i class="material-icons">add</i></button>
                     </div>
                 </div>
@@ -59,6 +59,9 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="/gestion/elearning/competencias" class="nav-link">Competencias</a> 
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="/gestion/elearning/programas" class="nav-link">Programas</a> 
                             </li>
                         </ul>
                     </div>

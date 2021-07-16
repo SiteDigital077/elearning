@@ -227,15 +227,22 @@ public function delete($id) {
  if(!$this->tenantName){
   $contenido = Contenido_general::where('curso_id','=', $id)->get();
   $lecciones = Lecciones::all();
+  $version = Version::all();
   }else{
   $contenido = \DigitalsiteSaaS\Elearning\Tenant\Contenido_general::where('curso_id','=', $id)->get();
   $lecciones = \DigitalsiteSaaS\Elearning\Tenant\Lecciones::all();
+  $version = \DigitalsiteSaaS\Elearning\Tenant\Version::all();
   }
- return view('elearning::tema-general')->with('contenido', $contenido)->with('lecciones', $lecciones);
+ return view('elearning::tema-general')->with('contenido', $contenido)->with('lecciones', $lecciones)->with('version', $version);
 }
 
 
 public function crearleccion(){
+  $versiones = Input::get('version');
+  $data = json_encode($versiones, true);
+  $vowels = array('"', '[', ']');
+  $onlyconsonants = str_replace($vowels, '', $data);
+
   if(!$this->tenantName){
    $crearcurso = new Lecciones;
   }else{
@@ -245,7 +252,7 @@ public function crearleccion(){
    $crearcurso->descripcion = Input::get('descripcion');
    $crearcurso->estado = Input::get('estado');
    $crearcurso->url_video = Input::get('url_video');
-   $crearcurso->version = Input::get('version');
+   $crearcurso->version = $onlyconsonants;
    $crearcurso->curso_id = Input::get('curso_id');
    $crearcurso->leccion_id = Input::get('leccion_id');
    $crearcurso->save();
@@ -254,6 +261,12 @@ public function crearleccion(){
 
 
 public function contenidogeneral(){
+
+  $versiones = Input::get('version');
+  $data = json_encode($versiones, true);
+  $vowels = array('"', '[', ']');
+  $onlyconsonants = str_replace($vowels, '', $data);
+
   if(!$this->tenantName){
    $crearcurso = new Contenido_general;
   }else{
@@ -263,6 +276,7 @@ public function contenidogeneral(){
    $crearcurso->slug = Str::slug($crearcurso->titulo);
    $crearcurso->descripcion = Input::get('descripcion');
    $crearcurso->estado = Input::get('estado');
+   $crearcurso->version = $onlyconsonants;
    $crearcurso->curso_id = Input::get('curso_id');
    $crearcurso->save();
    return Redirect('gestion/elearning/general/'.$crearcurso->curso_id)->with('status', 'ok_create');

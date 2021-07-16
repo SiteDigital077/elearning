@@ -60,6 +60,9 @@
                             <li class="nav-item dropdown">
                                 <a href="/gestion/elearning/competencias" class="nav-link">Competencias</a> 
                             </li>
+                            <li class="nav-item dropdown">
+                                <a href="/gestion/elearning/programas" class="nav-link">Programas</a> 
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -117,7 +120,7 @@
 
  <div class="block full">
   <div class="block-title">
-   <h4>Instructores Registrados</h4>
+   <h4>Competencias Registrados</h4>
   </div>
             
   <div class="table-responsive">
@@ -125,9 +128,9 @@
     <thead>
      <tr>
       <th class="text-center">ID</th>
-      <th class="text-center">Nombre</th>
-      <th class="text-center">Apellido</th>
-      <th class="text-center">Profesión</th>
+      <th class="text-center">Competencia</th>
+      <th class="text-center">Creación</th>
+      <th class="text-center">Actualización</th>
       
       <th class="text-center">Acciones</th>
       

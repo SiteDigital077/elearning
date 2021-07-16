@@ -1,7 +1,7 @@
 @extends ('adminsite.lms')
 
 @section('ContenidoSite-01')
-
+<link href="/chosen/component-chosen.min.css" rel="stylesheet">
      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 topper">
 
   <?php $status=Session::get('status');?>
@@ -116,14 +116,15 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Versión Lección</label>
-                                  <select id="cars" class="form-control" name="version">
+                                 <label for="exampleInputEmail1">Versión</label>
+                                 
+                                   <div id="output"></div>
+                                    <select id="optgroup" class="form-control form-control-chosen" name="version[]" data-placeholder="Seleccione Competencia" multiple>
                                     @foreach($version as $version)
                                     <option value="{{$version->version}}">{{$version->version}} {{$version->producto}}</option>
                                     @endforeach
-                                  </select>
-                                </div>
-
+                                    </select>
+                                  </div>
                                 
                                     @foreach($curso as $curso)
                                     {{Form::hidden('curso_id', $curso->curso_id, array('class' => 'form-control','placeholder'=>'Ingrese nombre curso','maxlength' => '50' ))}}
@@ -150,6 +151,46 @@
   </div>
 </div>
 
+ <footer>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('button-image').addEventListener('click', (event) => {
+      event.preventDefault();
+      window.open('/file-manager/fm-button', 'fm', 'width=900,height=500');
+    });
+  });
+  // set file link
+  function fmSetLink($url) {
+    document.getElementById('image_label').value = $url;
+  }
+</script>
+
+    <!-- jQuery -->
+    <script src="/lms/assets/vendor/jquery.min.js"></script>
+    <!-- Flatpickr -->
+    <script src="/lms/assets/vendor/flatpickr/flatpickr.min.js"></script>
+    <script src="/lms/assets/js/flatpickr.js"></script>
+
+    <!-- DateRangePicker -->
+
+     <script src="//harvesthq.github.io/chosen/chosen.jquery.js"></script>
+
+  
+    <script type="text/javascript">
+document.getElementById('output').innerHTML = location.search;
+$(".chosen-select").chosen();
+</script>
+
+<script type="text/javascript">
+    $('.form-control-chosen').chosen();
+</script>
+ 
+
+   
+</footer>
 
 
 
