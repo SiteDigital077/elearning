@@ -1,7 +1,7 @@
 <?php
 
 
-Route::group(['middleware' => ['auths','administrador']], function (){
+Route::group(['middleware' => ['auths','administrador','admcursos']], function (){
 
 Route::get('/gestion/elearning', 'DigitalsiteSaaS\Elearning\Http\ElearningController@index');
 
@@ -28,6 +28,9 @@ Route::post('/gestion/elearning/crearinstructor', 'DigitalsiteSaaS\Elearning\Htt
                                                                                                           
 Route::get('/gestion/elearning/competencias', 'DigitalsiteSaaS\Elearning\Http\ElearningController@competencias');
 Route::post('/gestion/elearning/crearcompetencia', 'DigitalsiteSaaS\Elearning\Http\ElearningController@crearcompetencia');
+
+Route::get('/gestion/elearning/proveedores', 'DigitalsiteSaaS\Elearning\Http\ElearningController@competencias');
+Route::post('/gestion/elearning/crearproveedor', 'DigitalsiteSaaS\Elearning\Http\ElearningController@crearcompetencia');
 
 Route::get('/gestion/elearning/programas', 'DigitalsiteSaaS\Elearning\Http\ElearningController@programas');
 Route::post('/gestion/elearning/crearprograma', 'DigitalsiteSaaS\Elearning\Http\ElearningController@crearprograma');

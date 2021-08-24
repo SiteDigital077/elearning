@@ -118,7 +118,7 @@
                                                  ], null, array('class' => 'form-control')) }}
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Lugar Curso:</label>
+                                    <label for="exampleInputEmail1">Lugar Curso / Enlace Curso:</label>
                                      {{Form::text('lugar', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','maxlength' => '150', 'min' => '0'))}}
                                 </div>
 
@@ -206,7 +206,7 @@
                                   </div>  
 
 
-
+ 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cantidad Lecciones:</label>
                                      {{Form::number('lecciones', '', array('class' => 'form-control','placeholder'=>'Ingrese palabras clave','maxlength' => '150', 'min' => '0'))}}
@@ -215,14 +215,20 @@
                                     <label for="exampleInputEmail1">Fecha Curso:</label>
                                      {{Form::text('fecha', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','data-toggle'=>'flatpickr','data-flatpickr-mode'=>'range','data-flatpickr-date-format'=>'y-m-d'))}}
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Url / Enlace</label>
+                                     {{Form::text('enlace', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','maxlength' => '150', 'min' => '0'))}}
+                                </div>
+
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Descripción Curso:</label>
-                                    {{Form::textarea('descripcion', '', array('class' => 'form-control','placeholder'=>'Ingrese descripción'))}}
+                                    {{Form::textarea('descripcion', '', array('class' => 'ckeditor','id' => 'editor1','placeholder'=>'Ingrese descripción'))}}
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Alcance del Curso:</label>
-                                    {{Form::textarea('alcance', '', array('class' => 'form-control','placeholder'=>'Ingrese alcance'))}}
+                                    {{Form::textarea('alcance', '', array('class' => 'ckeditor','id' => 'editor','placeholder'=>'Ingrese alcance'))}}
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -271,6 +277,11 @@ $(".chosen-select").chosen();
 </script>
  
 
+<script src="https://cdn.ckeditor.com/4.11.2/full/ckeditor.js"></script>
+
+<script>
+  CKEDITOR.replace( 'editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+</script>
    
 </footer>
 

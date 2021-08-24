@@ -82,6 +82,7 @@ class ElearningController extends Controller{
    $crearcurso->idioma = Input::get('idioma');
    $crearcurso->correo = Input::get('correo');
    $crearcurso->alcance = Input::get('alcance');
+   $crearcurso->enlace = Input::get('enlace');
    $crearcurso->competencia = $onlyconsonants;
    $crearcurso->programa = $onlyconsonantspro;
    $crearcurso->instructor = $onlyconsonantsins;
@@ -177,6 +178,7 @@ class ElearningController extends Controller{
   $updatecursos->idioma = Input::get('idioma');
   $updatecursos->correo = Input::get('correo');
   $updatecursos->alcance = Input::get('alcance');
+  $updatecursos->enlace = Input::get('enlace');
   $updatecursos->competencia = $onlyconsonants;
   $updatecursos->programa = $onlyconsonantspro;
   $updatecursos->instructor = $onlyconsonantsins;
