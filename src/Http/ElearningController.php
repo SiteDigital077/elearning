@@ -272,7 +272,7 @@ public function contenidogeneral(){
   if(!$this->tenantName){
    $crearcurso = new Contenido_general;
   }else{
-   $crearcurso = new \DigitalsiteSaaS\Elearning\Tenant\Contendio_general;
+   $crearcurso = new \DigitalsiteSaaS\Elearning\Tenant\Contenido_general;
   }
    $crearcurso->titulo = Input::get('titulo');
    $crearcurso->slug = Str::slug($crearcurso->titulo);
