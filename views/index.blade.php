@@ -56,7 +56,7 @@
                                         <div class="d-flex">
                                             <div>
                                                 <h4 class="card-title mb-1"><a href="#">{{$cursos->nombre}}</a></h4>
-                                                <p class="text-muted">{{$cursos->descripcion}}</p>
+                                                <p style="text-transform: capitalize; text-align: justify; color: red">{!!substr($cursos->descripcion, 0, 160)!!} ...</p>
                                             </div>
                                             <div class="dropdown ml-auto">
                                                 <a href="#" class="dropdown-toggle text-muted" data-caret="false" data-toggle="dropdown">
