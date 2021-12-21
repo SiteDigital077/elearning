@@ -31,47 +31,50 @@
  </div>
 
 
- <!-- Header Layout Content -->
-        <div class="mdk-header-layout__content page">
-
-        <div class="page__header flush-shadow">
-                <div class="container-fluid page__heading-container">
-                    <div class="page__heading d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-lg-between text-center text-lg-left">
-                        <h1 class="m-lg-0">Versión </h1>
-                        <button type="button" class="btn btn-success ml-lg-3" data-toggle="modal" data-target="#exampleModal">Crear Versión <i class="material-icons">add</i></button>
-                    </div>
-                </div>
-            </div> <!-- // END page__header -->
 
 
-            <div class="page__header page__header-nav">
-                <div class="container-fluid page__container">
+
+ <div class="page__header  page__header-nav mb-0">
+                <div class="container page__container">
                     <div class="navbar navbar-secondary navbar-light navbar-expand-sm p-0 d-none d-md-flex" id="secondaryNavbar">
                         <ul class="nav navbar-nav">
-                            <li class="nav-item dropdown">
+                            <li class="nav-item">
                                 <a href="/gestion/elearning" class="nav-link">Cursos</a> 
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="/gestion/elearning/instructores" class="nav-link">Instructores</a> 
+                            <li class="nav-item {{ Request::getRequestUri() === '/gestion/elearning/instructores' ? 'active' : null }}">
+                                <a href="/gestion/elearning/instructores" class="nav-link">Instructores </a> 
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item {{ Request::getRequestUri() === '/gestion/elearning/version' ? 'active' : null }}">
                                 <a href="/gestion/elearning/version" class="nav-link">Versión</a> 
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item {{ Request::getRequestUri() === '/gestion/elearning/competencias' ? 'active' : null }}">
                                 <a href="/gestion/elearning/competencias" class="nav-link">Competencias</a> 
                             </li>
-                             <li class="nav-item dropdown">
-                                <a href="/gestion/elearning/programas" class="nav-link">Programas</a> 
-                            </li>
+                            
+                        <button type="button" class="btn btn-dark ml-lg-3" data-toggle="modal" data-target="#exampleModal">Crear Versión <i class="material-icons">add</i></button>
+                           
+                            <!--
+  <li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Administrator</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="fixed-app-trello.html">Dashboard</a>
+      <a class="dropdown-item" href="fixed-app-trello.html">Review Courses</a>
+      <a class="dropdown-item" href="fixed-app-trello.html">Support Tickets</a>
+      <a class="dropdown-item" href="fixed-app-trello.html">Reports</a>
+      <a class="dropdown-item" href="fixed-app-trello.html">Website Settings</a> 
+    </div>
+  </li>
+  -->
+                            
+            
                         </ul>
                     </div>
                 </div>
             </div>
-</div>
 
-<!-- Button trigger modal -->
 
-<!-- Button trigger modal -->
+
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -116,52 +119,91 @@
 </div>
 
 
-<div class="container">
-  
 
- <div class="block full">
-  <div class="block-title">
-   <h4>Versiones registradas</h4>
-  </div>
-            
-  <div class="table-responsive">
-   <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
-    <thead>
-     <tr>
-      <th class="text-center">ID</th>
-      <th class="text-center">Producto</th>
-      <th class="text-center">Versión</th>
-      <th class="text-center">Creación</th>
-      <th class="text-center">Actualización</th>
-      <th class="text-center">Acciones</th>
-      
-     </tr>
-    </thead>
-    
-    <tbody>
-    
-    @foreach($version as $version)
-     <tr>
-      <td class="text-center">{{$version->id}}</td>
-      <td class="text-center">{{$version->producto}}</td>
-      <td>{{$version->version}}</td>
-      <td>{{$version->created_at}}</td>
-      <td>{{$version->updated_at}}</td>
-      <td class="text-center">
-       <a href="<?=URL::to('gestion/comercial/editar-recepcion/');?>/"><span  id="tip" data-toggle="tooltip" data-placement="left" title="Editar usuario" class="btn btn-primary"><i class="fa fa-pencil-square-o sidebar-nav-icon"></i></span></a>
+
+
+<br><br><br>
+
+
+
+<div class="container page__container">
+                <div class="card card-form">
+                    <div class="row no-gutters">
+                        
+                        <div class="col-lg-12 card-form__body">
+
+
+                            <div class="table-responsive border-bottom" data-toggle="lists" data-lists-values="[&quot;js-lists-values-employee-name&quot;]">
+
+                                <table class="table mb-0 thead-border-top-0">
+                                    <thead>
+                                        <tr>
+                                         <th style="width: 18px;">
+                                          <div class="custom-control custom-checkbox">
+                                           <input type="checkbox" class="custom-control-input js-toggle-check-all" data-target="#staff" id="customCheckAll" data-domfactory-upgraded="toggle-check-all">
+                                           <label class="custom-control-label" for="customCheckAll"><span class="text-hide">Toggle all</span></label>
+                                          </div>
+                                         </th>
+                                         <th>Producto</th>
+                                         <th style="width: 37px;">Versión</th>
+                                         <th style="width: 120px;">Creación</th>
+                                         <th style="width: 51px;">Actualización</th>
+                                         <th style="width: 51px;">Acciones</th>   
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list" id="staff">
+                                      @foreach($version as $version)
+                                        <tr>
+
+                                            <td style="background: #fff">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input js-check-selected-row" id="customCheck3_2" data-domfactory-upgraded="check-selected-row">
+                                                    <label class="custom-control-label" for="customCheck3_2"><span class="text-hide">Check</span></label>
+                                                </div>
+                                            </td>
+
+                                            <td width="40%" style="background: #fff">
+
+                                                <div class="media align-items-center">
+
+                                                    
+                                                    <div class="media-body">
+
+                                                        <span class="js-lists-values-employee-name">{{$version->producto}}</span>
+
+                                                    </div>
+                                                </div>
+
+                                            </td>
+
+
+                                            <td style="background: #fff"><span class="badge badge-primary">{{$version->version}}</span></td>
+                                            <td style="background: #fff"><small class="text-muted">{{$version->created_at}}</small></td>
+                                            <td style="background: #fff"><small class="text-muted">{{$version->updated_at}}</small></td>
+                                            <td style="background: #fff">
+                                            <a href="<?=URL::to('gestion/comercial/editar-recepcion/');?>/"><span  id="tip" data-toggle="tooltip" data-placement="left" title="Editar usuario" class="btn btn-primary"><i class="fa fa-pencil-square-o sidebar-nav-icon"></i></span></a>
        <script language="JavaScript">
         function confirmar ( mensaje ) {
         return confirm( mensaje );}
         </script>
         <a href="<?=URL::to('gestion/comercial/eliminar');?>/" onclick="return confirmar('¿Está seguro que desea eliminar el registro?')"><span id="tup" data-toggle="tooltip" data-placement="right" title="Eliminar usuario" class="btn btn-danger" disabled="true"><i class="hi hi-trash sidebar-nav-icon"></i></span></a>
-      </td>
-     </tr>
-  @endforeach    
-    </tbody>
-   </table>
-  </div>
- </div>
-</div>
+
+                                            </td>
+                                            
+                                        </tr>
+                                        @endforeach
+                                      </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+            </div>
 
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>

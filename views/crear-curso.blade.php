@@ -217,7 +217,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Url / Enlace</label>
+                                    <label for="exampleInputEmail1">Url / Enlace (Curso Externo)</label>
                                      {{Form::text('enlace', '', array('class' => 'form-control','id'=>'flatpickrSample02','placeholder'=>'Ingrese palabras clave','maxlength' => '150', 'min' => '0'))}}
                                 </div>
 

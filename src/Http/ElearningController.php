@@ -83,6 +83,7 @@ class ElearningController extends Controller{
    $crearcurso->correo = Input::get('correo');
    $crearcurso->alcance = Input::get('alcance');
    $crearcurso->enlace = Input::get('enlace');
+   $crearcurso->tipo = Input::get('tipo');
    $crearcurso->competencia = $onlyconsonants;
    $crearcurso->programa = $onlyconsonantspro;
    $crearcurso->instructor = $onlyconsonantsins;
@@ -256,7 +257,7 @@ public function crearleccion(){
    $crearcurso->url_video = Input::get('url_video');
    $crearcurso->version = $onlyconsonants;
    $crearcurso->curso_id = Input::get('curso_id');
-   $crearcurso->leccion_id = Input::get('leccion_id');
+   $crearcurso->general_id = Input::get('leccion_id');
    $crearcurso->save();
    return Redirect('gestion/elearning/general/'.$crearcurso->curso_id)->with('status', 'ok_create');
   }

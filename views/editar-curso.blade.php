@@ -133,7 +133,7 @@
                                          <label for="exampleInputEmail1">IMAGEN</label>
                                         
                                            <div class="input-group">
-                                            <input type="text" id="image_label" class="form-control" name="imagen" placeholder="Seleccionar imagen" aria-label="Image" aria-describedby="button-image">
+                                            <input type="text" id="image_label" value="{{$cursos->imagen}}" class="form-control" name="imagen" placeholder="Seleccionar imagen" aria-label="Image" aria-describedby="button-image">
                                             <span class="input-group-btn"><button class="btn btn-primary" type="button" id="button-image">Seleccionar imagen</button></span>
                                            </div>
                                         
