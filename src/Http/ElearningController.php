@@ -40,9 +40,10 @@ class ElearningController extends Controller{
   if(!$this->tenantName){
   $cursos = Cursos::all();
   }else{
-  $cursos = \DigitalsiteSaaS\Elearning\Tenant\Cursos::all();
+  $cursos = \DigitalsiteSaaS\Elearning\Tenant\Cursos::paginate(6);
   }
-  return view('elearning::index')->with('cursos', $cursos);
+
+  return view('elearning::index', compact('cursos'));
  }
 
  public function create(){

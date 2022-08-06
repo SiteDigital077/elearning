@@ -42,9 +42,36 @@
 
 
 
+
+
 <div class="container mt-5">
+ 
+
+  <?php $status=Session::get('status');?>
+    @if($status=='ok_create')
+      <div class="alert alert-success">
+       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+       <strong>Curso registrada con exito</strong> SD ...
+      </div>
+    @endif
+
+    @if($status=='ok_delete')
+      <div class="alert alert-danger">
+       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+       <strong>Curso eliminada con exito</strong> DS ...
+      </div>
+    @endif
+
+    @if($status=='ok_update')
+      <div class="alert alert-warning">
+       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+       <strong>Curso actualizada con exito</strong> SD ...
+      </div>
+    @endif
+   
+
 	<div class="row">
-@foreach($cursos as $cursos)
+@foreach($cursos as $curso)
 
   <div class="col-md-6">
                         <div class="card">
@@ -52,24 +79,24 @@
 
                                 <div class="d-flex flex-column flex-sm-row">
                                     <a href="#" class="avatar mb-3 w-xs-plus-down-100 mr-sm-3">
-                                        <img src="{{$cursos->imagen}}" alt="Card image cap" class="avatar-course-img">
+                                        <img src="{{$curso->imagen}}" alt="Card image cap" class="avatar-course-img">
                                     </a>
                                     <div class="flex" style="min-width: 200px;">
 
                                         <div class="d-flex">
                                             <div>
-                                                <h5 class="card-title mb-1"><b>{{$cursos->nombre}}</b></h5>
-                                                <p style="text-transform: capitalize; text-align: justify; color: red">{!!substr($cursos->descripcion, 0, 160)!!} ...</p>
+                                                <h5 class="card-title mb-1"><b>{{$curso->nombre}}</b></h5>
+                                                <p style="text-transform: capitalize; text-align: justify; color: red">{!!substr($curso->descripcion, 0, 160)!!} ...</p>
                                             </div>
                                             <div class="dropdown ml-auto">
                                                 <a href="#" class="dropdown-toggle text-muted" data-caret="false" data-toggle="dropdown">
                                                     <i class="material-icons">more_vert</i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="/gestion/elearning/editarcurso/{{$cursos->id}}">Editar Curso</a>
-                                                    <a class="dropdown-item" href="/gestion/elearning/general/{{$cursos->id}}">Contenido</a>
+                                                    <a class="dropdown-item" href="/gestion/elearning/editarcurso/{{$curso->id}}">Editar Curso</a>
+                                                    <a class="dropdown-item" href="/gestion/elearning/general/{{$curso->id}}">Contenido</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="/gestion/elearning/eliminar/{{$cursos->id}}">Eliminar</a>
+                                                    <a class="dropdown-item text-danger" href="/gestion/elearning/eliminar/{{$curso->id}}">Eliminar</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -77,12 +104,12 @@
                                         <div class="d-flex align-items-end">
                                             <div class="d-flex flex flex-column mr-3">
                                                 <div class="d-flex align-items-center py-2 border-bottom">
-                                                    @if($cursos->inversion == '')
+                                                    @if($curso->inversion == '')
                                                     <span class="badge badge-vuejs mr-2">GRATIS</span>
                                                     @else
-                                                    <span class="badge badge-dark mr-2">$ {{ number_format($cursos->inversion, 2) }}</span>
+                                                    <span class="badge badge-dark mr-2">$ {{ number_format($curso->inversion, 2) }}</span>
                                                     @endif
-                                                    <small class="text-muted ml-auto">{{$cursos->lecciones}} Lecciones - {{$cursos->tiempo}}</small>
+                                                    <small class="text-muted ml-auto">{{$curso->lecciones}} Lecciones - {{$curso->tiempo}}</small>
                                                 </div>
                                                 
                                             </div>
@@ -98,6 +125,9 @@
 
 @endforeach
 
+</div>
+<div class="text-center">
+  {{ $cursos->links() }}
 </div>
 </div>
                                 
